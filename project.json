@@ -1,0 +1,30 @@
+{
+  "overview": "Project Meadow is a decentralized, community-first platform on the Internet Computer connecting Canadian local businesses, food producers, tradespeople, services, non-profits, cooperatives, and community members. It fosters local economic resilience through a trusted directory, community opportunities coordination, connected presence links, and lightweight coordination infrastructure — strictly non-custodial and community-oriented.",
+  "features": [
+    "Searchable local business and producer directory with map/grid view",
+    "Connected Presence profiles — link websites, social channels, stores, and resources",
+    "Featured content highlighting on member profiles",
+    "Community Opportunities system — post and discover volunteer work, workshops, farm exchanges, mentorship",
+    "Community Trust System with confirm/report voting and auto-verification",
+    "Optional membership support tiers with interest capture (no payment processing)",
+    "Admin panel with approval workflow, trust moderation, and opportunity management",
+    "Activity feed showing live local participation events",
+    "Chapter map showing active cities with member counts",
+    "Wallet education for Bitcoin and ICP payment display (no custody)",
+    "Mobile-first dark premium UI with cream typography and Font Awesome icons"
+  ],
+  "category": "community",
+  "tags": [
+    "local-economy",
+    "community",
+    "directory",
+    "canada",
+    "resilience",
+    "trust",
+    "coordination",
+    "icp",
+    "decentralized",
+    "non-custodial"
+  ],
+  "last_updated": "2026-05-14T00:03:05.116Z"
+}

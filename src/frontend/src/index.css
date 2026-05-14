@@ -1,0 +1,205 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --font-display: "Space Grotesk";
+    --font-body: "Plus Jakarta Sans";
+    --font-mono: "JetBrains Mono";
+    --radius: 0.75rem;
+
+    --background: 0.98 0.01 70;
+    --foreground: 0.94 0.02 70;
+    --card: 1.0 0 0;
+    --card-foreground: 0.94 0.02 70;
+    --popover: 1.0 0 0;
+    --popover-foreground: 0.94 0.02 70;
+
+    --primary: 0.62 0.17 142;
+    --primary-foreground: 0.98 0 0;
+
+    --secondary: 0.75 0.08 60;
+    --secondary-foreground: 0.15 0 0;
+    --muted: 0.92 0.02 70;
+    --muted-foreground: 0.45 0.02 70;
+
+    --accent: 0.55 0.15 142;
+    --accent-foreground: 0.98 0 0;
+
+    --destructive: 0.58 0.15 20;
+    --destructive-foreground: 0.98 0 0;
+
+    --border: 0.9 0.01 70;
+    --input: 0.9 0.01 70;
+    --ring: 0.62 0.17 142;
+
+    --chart-1: 0.65 0.18 45;
+    --chart-2: 0.6 0.12 270;
+    --chart-3: 0.55 0.15 142;
+    --chart-4: 0.72 0.12 30;
+    --chart-5: 0.5 0.14 200;
+
+    --sidebar: 0.98 0 0;
+    --sidebar-foreground: 0.15 0 0;
+    --sidebar-primary: 0.35 0 0;
+    --sidebar-primary-foreground: 0.98 0 0;
+    --sidebar-accent: 0.95 0 0;
+    --sidebar-accent-foreground: 0.25 0 0;
+    --sidebar-border: 0.9 0 0;
+    --sidebar-ring: 0.35 0 0;
+  }
+
+  .dark {
+    --background: 0.12 0 0;
+    --foreground: 0.94 0.02 70;
+    --card: 0.18 0 0;
+    --card-foreground: 0.94 0.02 70;
+    --popover: 0.22 0 0;
+    --popover-foreground: 0.94 0.02 70;
+
+    --primary: 0.62 0.17 142;
+    --primary-foreground: 0.12 0 0;
+
+    --secondary: 0.28 0.05 60;
+    --secondary-foreground: 0.88 0.02 70;
+    --muted: 0.28 0 0;
+    --muted-foreground: 0.72 0.02 70;
+
+    --accent: 0.62 0.17 142;
+    --accent-foreground: 0.12 0 0;
+
+    --destructive: 0.65 0.18 20;
+    --destructive-foreground: 0.94 0.02 70;
+
+    --border: 0.28 0.01 0;
+    --input: 0.28 0.01 0;
+    --ring: 0.62 0.17 142;
+
+    --chart-1: 0.65 0.18 45;
+    --chart-2: 0.6 0.12 270;
+    --chart-3: 0.55 0.15 142;
+    --chart-4: 0.72 0.12 30;
+    --chart-5: 0.5 0.14 200;
+
+    --sidebar: 0.18 0 0;
+    --sidebar-foreground: 0.94 0.02 70;
+    --sidebar-primary: 0.62 0.17 142;
+    --sidebar-primary-foreground: 0.12 0 0;
+    --sidebar-accent: 0.28 0 0;
+    --sidebar-accent-foreground: 0.88 0.02 70;
+    --sidebar-border: 0.28 0.01 0;
+    --sidebar-ring: 0.62 0.17 142;
+  }
+
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground font-body antialiased;
+  }
+}
+
+@layer utilities {
+  .shadow-soft {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  }
+  .shadow-lifted {
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+  }
+  .glow-accent {
+    box-shadow: 0 0 20px rgba(108, 199, 87, 0.2);
+  }
+  .glow-subtle {
+    box-shadow: 0 0 16px rgba(108, 199, 87, 0.15);
+  }
+  .glow-activity {
+    box-shadow: 0 0 24px rgba(108, 199, 87, 0.12), 0 4px 12px rgba(0, 0, 0, 0.2);
+  }
+  .card-activity {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  }
+  .impact-metric {
+    box-shadow: 0 0 20px rgba(108, 199, 87, 0.08), 0 2px 8px rgba(0, 0, 0, 0.1);
+  }
+  .flow-connector {
+    border-color: oklch(0.62 0.17 142 / 0.3);
+  }
+  .bitcoin-accent {
+    color: oklch(0.65 0.18 45);
+  }
+  .icp-accent {
+    color: oklch(0.6 0.12 270);
+  }
+
+  .transition-smooth {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .transition-hover {
+    transition: transform 0.2s ease-out, opacity 0.2s ease-out;
+  }
+  .hover-lift {
+    @apply hover:scale-105 hover:shadow-lifted transition-hover;
+  }
+  .activity-card {
+    @apply bg-card border border-border rounded-lg p-4 transition-smooth hover:bg-muted/40;
+    border-color: oklch(var(--border) / 0.3);
+  }
+  .impact-card {
+    @apply bg-card rounded-lg p-6 text-center transition-smooth hover:shadow-lifted;
+  }
+  .impact-number {
+    @apply text-4xl md:text-5xl font-bold text-primary font-display;
+  }
+  .impact-label {
+    @apply text-sm md:text-base text-muted-foreground font-body mt-2;
+  }
+  .story-card {
+    @apply bg-card rounded-lg overflow-hidden transition-smooth hover:shadow-lifted;
+  }
+  .flow-step {
+    @apply flex flex-col items-center text-center;
+  }
+  .flow-icon {
+    @apply text-4xl md:text-5xl mb-2;
+  }
+  .flow-label {
+    @apply text-sm md:text-base font-body text-foreground;
+  }
+  .event-icon-business {
+    @apply text-2xl;
+  }
+  .event-icon-producer {
+    @apply text-2xl;
+  }
+  .event-icon-volunteer {
+    @apply text-2xl;
+  }
+  .event-icon-verified {
+    @apply text-2xl text-primary;
+  }
+
+  @font-face {
+    font-family: "Space Grotesk";
+    src: url("/assets/fonts/SpaceGrotesk.woff2") format("woff2");
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: "Plus Jakarta Sans";
+    src: url("/assets/fonts/PlusJakartaSans.woff2") format("woff2");
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: "JetBrains Mono";
+    src: url("/assets/fonts/JetBrainsMono.woff2") format("woff2");
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+  }
+}

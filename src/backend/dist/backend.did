@@ -1,0 +1,411 @@
+type VoteType = 
+ variant {
+   downvote;
+   upvote;
+ };
+type VolunteerInterest = 
+ record {
+   availability: text;
+   city: text;
+   createdAt: Timestamp;
+   email: text;
+   id: text;
+   interests: vec text;
+   name: text;
+   skills: vec text;
+ };
+type VolunteerInput = 
+ record {
+   availability: text;
+   city: text;
+   email: text;
+   interests: vec text;
+   name: text;
+   skills: vec text;
+ };
+type VerificationStatus = 
+ variant {
+   pending;
+   rejected;
+   verified;
+ };
+type TrustSummary = 
+ record {
+   callerVote: opt VoteType;
+   downvotes: nat;
+   upvotes: nat;
+ };
+type Timestamp = int;
+type StatsRecord = 
+ record {
+   bitcoinEnabled: nat;
+   businessMembers: nat;
+   byProvince: vec record {
+                     text;
+                     nat;
+                   };
+   circularEconomy: nat;
+   communityMembers: nat;
+   icpEnabled: nat;
+   organizationPartners: nat;
+   pendingMembers: nat;
+   producerMembers: nat;
+   totalMembers: nat;
+   tradeMembers: nat;
+   verifiedMembers: nat;
+ };
+type SearchFilters = 
+ record {
+   acceptsBitcoin: opt bool;
+   acceptsICP: opt bool;
+   category: opt text;
+   circularEconomyParticipant: opt bool;
+   city: opt text;
+   province: opt text;
+   verificationStatus: opt VerificationStatus;
+ };
+type Result__1 = 
+ variant {
+   err: text;
+   ok: MembershipIntent;
+ };
+type Result_4 = 
+ variant {
+   err: text;
+   ok: CommunityOpportunity;
+ };
+type Result_3 = 
+ variant {
+   err: text;
+   ok: AdminTrustQueue;
+ };
+type Result_2 = 
+ variant {
+   err: text;
+   ok: TrustSummary;
+ };
+type Result_1 = 
+ variant {
+   err: text;
+   ok: text;
+ };
+type Result = 
+ variant {
+   err: text;
+   ok;
+ };
+type OpportunityStatus = 
+ variant {
+   active;
+   inactive;
+ };
+type OpportunityInput = 
+ record {
+   category: OpportunityCategory;
+   chapterId: opt text;
+   city: text;
+   contactLink: opt text;
+   description: text;
+   memberId: opt text;
+   organizationName: opt text;
+   province: text;
+   recurring: bool;
+   status: OpportunityStatus;
+   timeCommitment: opt text;
+   title: text;
+   trustScore: opt nat;
+ };
+type OpportunityCategory = 
+ variant {
+   cleanup;
+   creativeArts;
+   delivery;
+   education;
+   events;
+   foodSupport;
+   localFarming;
+   mentorship;
+   other;
+   technology;
+   volunteer;
+   wellness;
+   youthSupport;
+ };
+type MembershipTier = 
+ variant {
+   builderMember;
+   communityPartner;
+   communitySupporterTier;
+   localProducer;
+   localSponsor;
+   verifiedBusiness;
+ };
+type MembershipStatus = 
+ variant {
+   approved;
+   contacted;
+   pending;
+ };
+type MembershipStats = 
+ record {
+   byStatus: vec record {
+                   text;
+                   nat;
+                 };
+   byTier: vec record {
+                 text;
+                 nat;
+               };
+   estimatedMonthlySupport: nat;
+   total: nat;
+ };
+type MembershipIntentInput = 
+ record {
+   city: text;
+   displayPublicly: bool;
+   email: text;
+   membershipTier: MembershipTier;
+   message: opt text;
+   name: text;
+   participantType: MemberParticipantType;
+   "principal": opt principal;
+   province: text;
+ };
+type MembershipIntent = 
+ record {
+   city: text;
+   createdAt: Timestamp;
+   displayPublicly: bool;
+   email: text;
+   id: text;
+   membershipTier: MembershipTier;
+   message: opt text;
+   name: text;
+   participantType: MemberParticipantType;
+   "principal": opt principal;
+   province: text;
+   status: MembershipStatus;
+ };
+type MemberRecord = 
+ record {
+   acceptsBitcoin: bool;
+   acceptsCash: bool;
+   acceptsFiat: bool;
+   acceptsICP: bool;
+   bitcoinAddress: opt text;
+   businessName: text;
+   category: text;
+   circularEconomyParticipant: bool;
+   city: text;
+   communityDownvotes: nat;
+   communityUpvotes: nat;
+   communityVerificationStatus: text;
+   communityVerified: bool;
+   connectedPresence: vec ConnectedPresenceLink;
+   contactName: text;
+   createdAt: Timestamp;
+   description: text;
+   email: opt text;
+   featured: bool;
+   featuredContent: opt FeaturedContent;
+   flaggedForReview: bool;
+   icpAddress: opt text;
+   id: text;
+   latitude: opt float64;
+   longitude: opt float64;
+   membershipStatus: ListingMembershipStatus;
+   oisyWalletLink: opt text;
+   ownerPrincipal: opt text;
+   participantType: text;
+   paymentInstructions: opt text;
+   paymentQrImage: opt text;
+   phone: opt text;
+   postalCode: opt text;
+   province: text;
+   region: opt text;
+   socialLinks: opt text;
+   subcategory: opt text;
+   updatedAt: Timestamp;
+   verificationStatus: VerificationStatus;
+   votingFrozen: bool;
+   website: opt text;
+ };
+type MemberParticipantType = 
+ variant {
+   business;
+   individual;
+   organization;
+   producer;
+ };
+type MemberInput = 
+ record {
+   acceptsBitcoin: bool;
+   acceptsCash: bool;
+   acceptsFiat: bool;
+   acceptsICP: bool;
+   bitcoinAddress: opt text;
+   businessName: text;
+   category: text;
+   circularEconomyParticipant: bool;
+   city: text;
+   connectedPresence: opt vec ConnectedPresenceLink;
+   contactName: text;
+   description: text;
+   email: opt text;
+   featuredContent: opt FeaturedContent;
+   icpAddress: opt text;
+   latitude: opt float64;
+   longitude: opt float64;
+   oisyWalletLink: opt text;
+   participantType: text;
+   paymentInstructions: opt text;
+   paymentQrImage: opt text;
+   phone: opt text;
+   postalCode: opt text;
+   province: text;
+   region: opt text;
+   socialLinks: opt text;
+   subcategory: opt text;
+   website: opt text;
+ };
+type ListingMembershipStatus = 
+ variant {
+   businessMember;
+   free;
+   partner;
+   producerMember;
+   sponsor;
+   supporter;
+ };
+type LinkType = 
+ variant {
+   blog;
+   booking;
+   calendly;
+   discord;
+   donation;
+   etsy;
+   events;
+   facebook;
+   gumroad;
+   instagram;
+   linktree;
+   newsletter;
+   other;
+   patreon;
+   pdf;
+   shopify;
+   signal;
+   store;
+   substack;
+   telegram;
+   twitter;
+   website;
+   youtube;
+ };
+type FeaturedContent = 
+ record {
+   description: text;
+   externalLink: text;
+   featuredType: opt text;
+   imageUrl: opt text;
+   title: text;
+ };
+type ConnectedPresenceLink = 
+ record {
+   displayLabel: opt text;
+   linkType: LinkType;
+   url: text;
+ };
+type CommunityOpportunity = 
+ record {
+   adminFlagged: opt bool;
+   category: OpportunityCategory;
+   chapterId: opt text;
+   city: text;
+   contactLink: opt text;
+   createdAt: int;
+   description: text;
+   id: nat;
+   memberId: opt text;
+   organizationName: opt text;
+   province: text;
+   recurring: bool;
+   status: OpportunityStatus;
+   timeCommitment: opt text;
+   title: text;
+   trustScore: opt nat;
+   updatedAt: int;
+ };
+type CityStats = 
+ record {
+   businessCount: nat;
+   city: text;
+   memberCount: nat;
+   producerCount: nat;
+   province: text;
+   totalListings: nat;
+   volunteerCount: nat;
+ };
+type AdminTrustQueue = 
+ record {
+   flagged: vec MemberRecord;
+   highTrust: vec MemberRecord;
+   pending: vec MemberRecord;
+ };
+type ActivityEvent = 
+ record {
+   city: text;
+   description: text;
+   eventType: text;
+   id: text;
+   province: text;
+   relatedChapterId: opt text;
+   relatedListingId: opt text;
+   timestamp: int;
+   title: text;
+ };
+service : {
+  addCommunityVote: (listingId: text, voteType: VoteType) -> (Result_1);
+  adminFlagOpportunity: (id: nat, flagged: bool) -> (Result);
+  approveMember: (id: text) -> (Result);
+  createMember: (memberData: MemberInput) -> (Result_1);
+  createMembershipIntent: (input: MembershipIntentInput) -> (Result__1);
+  createOpportunity: (input: OpportunityInput) -> (Result_4);
+  createVolunteer: (volunteerData: VolunteerInput) -> (Result_1);
+  deleteMember: (id: text) -> (Result);
+  featureMember: (id: text, featured: bool) -> (Result);
+  freezeVoting: (memberId: text, frozen: bool) -> (Result_1);
+  getActivityFeed: (limit: nat) -> (vec ActivityEvent) query;
+  getAdminTrustQueue: () -> (Result_3) query;
+  getCityStats: () -> (vec CityStats) query;
+  getCommunityVotes: (listingId: text) -> (Result_2) query;
+  getLatestOpportunities: (limit: nat) -> (vec CommunityOpportunity) query;
+  getLocalActivity: (city: text, limit: nat) -> (vec ActivityEvent) query;
+  getMember: (id: text) -> (opt MemberRecord) query;
+  getMembers: (searchQuery: opt text, filters: opt SearchFilters) ->
+   (vec MemberRecord) query;
+  getMembershipIntents: () -> (vec MembershipIntent) query;
+  getMembershipIntentsByStatus: (status: MembershipStatus) ->
+   (vec MembershipIntent) query;
+  getMembershipIntentsByTier: (tier: MembershipTier) ->
+   (vec MembershipIntent) query;
+  getMembershipStats: () -> (MembershipStats) query;
+  getMyVote: (listingId: text) -> (opt VoteType) query;
+  getOpportunities: (city: opt text, category: opt OpportunityCategory,
+   status: opt OpportunityStatus) -> (vec CommunityOpportunity) query;
+  getOpportunitiesByMember: (memberId: text) ->
+   (vec CommunityOpportunity) query;
+  getOpportunityById: (id: nat) -> (opt CommunityOpportunity) query;
+  getPublicSupporters: () -> (vec MembershipIntent) query;
+  getStats: () -> (StatsRecord);
+  getVolunteers: () -> (vec VolunteerInterest);
+  isAdmin: (p: principal) -> (bool) query;
+  overrideTrustStatus: (memberId: text, newStatus: text) -> (Result_1);
+  rejectMember: (id: text) -> (Result);
+  removeCommunityVote: (listingId: text) -> (Result_1);
+  updateMember: (id: text, memberData: MemberInput) -> (Result);
+  updateMembershipIntentStatus: (id: text, newStatus: MembershipStatus) ->
+   (Result__1);
+  updateOpportunityStatus: (id: nat, status: OpportunityStatus) -> (Result);
+}

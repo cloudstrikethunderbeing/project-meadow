@@ -1,0 +1,227 @@
+// Version: 1.0.0
+type ActivityEvent__523671481 =
+  {
+    city : Text;
+    description : Text;
+    eventType : Text;
+    id : Text;
+    province : Text;
+    relatedChapterId : ?Text;
+    relatedListingId : ?Text;
+    timestamp : Int;
+    title : Text
+  };
+type CommunityOpportunity__4311963 =
+  {
+    adminFlagged : ?Bool;
+    category : OpportunityCategory__426420671;
+    chapterId : ?Text;
+    city : Text;
+    contactLink : ?Text;
+    createdAt : Int;
+    description : Text;
+    id : Nat;
+    memberId : ?Text;
+    organizationName : ?Text;
+    province : Text;
+    recurring : Bool;
+    status : OpportunityStatus__679276785;
+    timeCommitment : ?Text;
+    title : Text;
+    trustScore : ?Nat;
+    updatedAt : Int
+  };
+type CommunityVote__220616186 =
+  {
+    listingId : Text;
+    timestamp : Int;
+    voteType : VoteType__366304802;
+    voter : Principal
+  };
+type ConnectedPresenceLink__952069265 =
+  {displayLabel : ?Text; linkType : LinkType__448538366; url : Text};
+type FeaturedContent__631019573 =
+  {
+    description : Text;
+    externalLink : Text;
+    featuredType : ?Text;
+    imageUrl : ?Text;
+    title : Text
+  };
+type LinkType__448538366 =
+  {
+    #blog;
+    #booking;
+    #calendly;
+    #discord;
+    #donation;
+    #etsy;
+    #events;
+    #facebook;
+    #gumroad;
+    #instagram;
+    #linktree;
+    #newsletter;
+    #other;
+    #patreon;
+    #pdf;
+    #shopify;
+    #signal;
+    #store;
+    #substack;
+    #telegram;
+    #twitter;
+    #website;
+    #youtube
+  };
+type ListingMembershipStatus__912390631 =
+  {#businessMember; #free; #partner; #producerMember; #sponsor; #supporter};
+type MemberParticipantType__884240794 =
+  {#business; #individual; #organization; #producer};
+type MemberRecord__443339830 =
+  {
+    acceptsBitcoin : Bool;
+    acceptsCash : Bool;
+    acceptsFiat : Bool;
+    acceptsICP : Bool;
+    bitcoinAddress : ?Text;
+    businessName : Text;
+    category : Text;
+    circularEconomyParticipant : Bool;
+    city : Text;
+    communityDownvotes : Nat;
+    communityUpvotes : Nat;
+    communityVerificationStatus : Text;
+    communityVerified : Bool;
+    connectedPresence : [ConnectedPresenceLink__952069265];
+    contactName : Text;
+    createdAt : Timestamp__303492881;
+    description : Text;
+    email : ?Text;
+    featured : Bool;
+    featuredContent : ?FeaturedContent__631019573;
+    flaggedForReview : Bool;
+    icpAddress : ?Text;
+    id : Text;
+    latitude : ?Float;
+    longitude : ?Float;
+    membershipStatus : ListingMembershipStatus__912390631;
+    oisyWalletLink : ?Text;
+    ownerPrincipal : ?Text;
+    participantType : Text;
+    paymentInstructions : ?Text;
+    paymentQrImage : ?Text;
+    phone : ?Text;
+    postalCode : ?Text;
+    province : Text;
+    region : ?Text;
+    socialLinks : ?Text;
+    subcategory : ?Text;
+    updatedAt : Timestamp__303492881;
+    verificationStatus : VerificationStatus__313477251;
+    votingFrozen : Bool;
+    website : ?Text
+  };
+type MembershipIntent__858676313 =
+  {
+    city : Text;
+    createdAt : Timestamp__877629279;
+    displayPublicly : Bool;
+    email : Text;
+    id : Text;
+    membershipTier : MembershipTier__944715395;
+    message : ?Text;
+    name : Text;
+    participantType : MemberParticipantType__884240794;
+    principal : ?Principal;
+    province : Text;
+    status : MembershipStatus__541310874
+  };
+type MembershipStatus__541310874 = {#approved; #contacted; #pending};
+type MembershipTier__944715395 =
+  {
+    #builderMember;
+    #communityPartner;
+    #communitySupporterTier;
+    #localProducer;
+    #localSponsor;
+    #verifiedBusiness
+  };
+type Nat__490723111 = Nat__920180692;
+type Nat__920180692 = Nat;
+type OpportunityCategory__426420671 =
+  {
+    #cleanup;
+    #creativeArts;
+    #delivery;
+    #education;
+    #events;
+    #foodSupport;
+    #localFarming;
+    #mentorship;
+    #other;
+    #technology;
+    #volunteer;
+    #wellness;
+    #youthSupport
+  };
+type OpportunityStatus__679276785 = {#active; #inactive};
+type Timestamp__301639476 = Int;
+type Timestamp__303492881 = Timestamp__301639476;
+type Timestamp__877629279 = Timestamp__301639476;
+type VerificationStatus__1042146990 = {#pending; #rejected; #verified};
+type VerificationStatus__313477251 = VerificationStatus__1042146990;
+type VolunteerInterest__566517976 =
+  {
+    availability : Text;
+    city : Text;
+    createdAt : Timestamp__303492881;
+    email : Text;
+    id : Text;
+    interests : [Text];
+    name : Text;
+    skills : [Text]
+  };
+type VoteType__366304802 = {#downvote; #upvote};
+actor {
+  stable _membershipAdmins : [Text];
+  stable activities :
+    {
+      var blockIndex : Nat__490723111;
+      var blocks : [var [var ?ActivityEvent__523671481]];
+      var elementIndex : Nat__490723111
+    };
+  stable adminPrincipals : [Text];
+  stable members :
+    {
+      var blockIndex : Nat__490723111;
+      var blocks : [var [var ?MemberRecord__443339830]];
+      var elementIndex : Nat__490723111
+    };
+  stable membershipIntents :
+    {
+      var blockIndex : Nat__490723111;
+      var blocks : [var [var ?MembershipIntent__858676313]];
+      var elementIndex : Nat__490723111
+    };
+  stable opportunities :
+    {
+      var blockIndex : Nat__490723111;
+      var blocks : [var [var ?CommunityOpportunity__4311963]];
+      var elementIndex : Nat__490723111
+    };
+  stable opportunityState : {var nextOpportunityId : Nat};
+  stable state : {var nextMemberId : Nat; var nextVolunteerId : Nat};
+  stable volunteers :
+    {
+      var blockIndex : Nat__490723111;
+      var blocks : [var [var ?VolunteerInterest__566517976]];
+      var elementIndex : Nat__490723111
+    };
+  stable votes :
+    {
+      var blockIndex : Nat__490723111;
+      var blocks : [var [var ?CommunityVote__220616186]];
+      var elementIndex : Nat__490723111
+    }
+};
